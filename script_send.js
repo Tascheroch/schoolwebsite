@@ -1,93 +1,74 @@
-// script.js
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>WorkCheck Form</title>
+</head>
+<body>
+    <form id="workcheckForm">
+        <!-- Ваші поля з HTML файлу -->
+        <div>
+            <label for="emailField">Електронна пошта (checkbox для підтвердження):</label>
+            <input type="checkbox" id="i5" name="EmailConfirmed"> Так, це моя адреса
+            <input type="hidden" id="emailHidden" name="Email" value="cifrotex2717@gmail.com">
+        </div>
+        <div>
+            <label for="postField">Пошта:</label>
+            <input type="text" id="i8" name="Пошта" placeholder="Ваша відповідь">
+        </div>
+        <div>
+            <label for="classField">Клас:</label>
+            <input type="text" id="i13" name="Клас" placeholder="Ваша відповідь">
+        </div>
+        <!-- Додайте решту полів аналогічно, де атрибут name відповідає назві колонки в таблиці -->
+        
+        <button type="submit">Надіслати</button>
+    </form>
 
-// --------------------
-// Функції для Login.html
-// --------------------
-function saveLoginData() {
-    const email = document.getElementById("i5").value;
-    const className = document.getElementById("i13").value;
-    const projectName = document.getElementById("i18").value;
+    <script>
+        // ЗАМІНІТЬ ЦЕЙ URL НА ТОЙ, ЩО ВИ ОТРИМАЛИ ПРИ РОЗГОРТАННІ
+        const scriptURL = 'https://script.google.com/macros/s/TBІЙ_ID/exec';
 
-    // Перевірка, щоб нічого не було пустим
-    if (!email || !className || !projectName) {
-        alert("Будь ласка, заповніть всі поля!");
-        return false;
-    }
+        document.getElementById('workcheckForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Запобігаємо стандартному перезавантаженню сторінки
 
-    // Зберігаємо дані в localStorage
-    localStorage.setItem("email", email);
-    localStorage.setItem("className", className);
-    localStorage.setItem("projectName", projectName);
+            // Збираємо дані з форми
+            const formData = {};
+            
+            // Додаємо статичний email
+            formData['Email'] = document.getElementById('emailHidden').value;
+            formData['EmailConfirmed'] = document.getElementById('i5').checked;
+            
+            // Додаємо інші поля. Важливо, щоб ключі (наприклад, 'Пошта') 
+            // точно відповідали назвам колонок у таблиці.
+            formData['Пошта'] = document.getElementById('i8').value;
+            formData['Клас'] = document.getElementById('i13').value;
+            
+            // Тут потрібно зібрати решту 15 полів аналогічно до вашого HTML
+            // formData['Назва проекту'] = document.getElementById('i18').value;
+            // formData['Перше враження від проекту'] = document.getElementById('i23').value;
+            // ... і так далі
 
-    // Переходимо на сторінку критеріїв
-    window.location.href = "criteria.html";
-}
-
-// --------------------
-// Функції для Criteria.html
-// --------------------
-function sendToGoogleForm() {
-    // Беремо login-дані з localStorage
-    const email = localStorage.getItem("email");
-    const className = localStorage.getItem("className");
-    const projectName = localStorage.getItem("projectName");
-
-    if (!email || !className || !projectName) {
-        alert("Помилка: дані login не знайдено. Поверніться на сторінку входу.");
-        return;
-    }
-
-    // ID полів критеріїв
-    const scoreIDs = ["i23","i28","i33","i38","i43","i48","i53","i58","i63","i68","i73","i78","i83","i88","i93"];
-    
-    // Збираємо оцінки
-    const scores = {};
-    let allFilled = true;
-    scoreIDs.forEach(id => {
-        const val = document.getElementById(id).value;
-        if (val === "") allFilled = false;
-        scores[id] = val;
-    });
-
-    if (!allFilled) {
-        if(!confirm("Деякі поля оцінок порожні. Надіслати все одно?")) return;
-    }
-
-    // Формуємо тіло POST-запиту
-    const data = {};
-    data["entry.5"] = email;        // Пошта
-    data["entry.13"] = className;   // Клас
-    data["entry.18"] = projectName; // Назва проєкту
-
-    scoreIDs.forEach(id => {
-        data["entry." + id.slice(1)] = scores[id];
-    });
-
-    const formBody = Object.keys(data)
-        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-        .join("&");
-
-    // URL вашої Google форми
-    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdjTbjQGwof2d5s77lf22VQQU9ydYWfPhjh-pZmr-2bNXsTUg/formResponse";
-
-    // Надсилаємо POST-запит
-    fetch(formURL, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: formBody
-    }).then(() => {
-        alert("Дані успішно надіслані!");
-        // Очистка localStorage після відправки
-        localStorage.removeItem("email");
-        localStorage.removeItem("className");
-        localStorage.removeItem("projectName");
-        // Можна перезавантажити сторінку або повернутися на login
-        window.location.href = "index.html";
-    }).catch((error) => {
-        console.error(error);
-        alert("Помилка при надсиланні даних.");
-    });
-}
+            // Відправляємо дані методом POST
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors', // Важливо для Google Apps Script, щоб уникнути CORS помилок
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData) // Відправляємо як JSON рядок
+            })
+            .then(() => {
+                // Через 'no-cors' ми не можемо прочитати відповідь, 
+                // тому просто показуємо повідомлення про успіх
+                alert('Дані успішно надіслано!');
+                document.getElementById('workcheckForm').reset();
+            })
+            .catch(error => {
+                console.error('Помилка:', error);
+                alert('Сталася помилка при надсиланні.');
+            });
+        });
+    </script>
+</body>
+</html>
