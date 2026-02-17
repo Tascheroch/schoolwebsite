@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Оцінювання</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section class="criteria-screen">
+
+    <h1 class="title">Оцінювання проєкту</h1>
+
+    <div class="criteria-list">
+
+        <!-- 15 критеріїв -->
+        <div class="criterion">
+            <span>1. Перше враження від проекту</span>
+            <input type="number" id="i23" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>2. Зрозумілість ідеї та теми проекту</span>
+            <input type="number" id="i28" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>3. Актуальність або корисність роботи</span>
+            <input type="number" id="i33" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>4. Оригінальність ідеї</span>
+            <input type="number" id="i38" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>5. Зручність використання або перегляду</span>
+            <input type="number" id="i43" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>6. Якість дизайну та оформлення</span>
+            <input type="number" id="i48" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>7. Логічність структури проекту</span>
+            <input type="number" id="i53" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>8. Складність виконання</span>
+            <input type="number" id="i58" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>9. Кількість реалізованих можливостей</span>
+            <input type="number" id="i63" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>10. Стабільність роботи (відсутність помилок)</span>
+            <input type="number" id="i68" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>11. Швидкість та плавність роботи</span>
+            <input type="number" id="i73" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>12. Продуманість деталей</span>
+            <input type="number" id="i78" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>13. Завершеність проекту</span>
+            <input type="number" id="i83" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>14. Якість пояснення та демонстрації автора</span>
+            <input type="number" id="i88" min="0" max="5" placeholder="0–5">
+        </div>
+
+        <div class="criterion">
+            <span>15. Загальне враження після перегляду</span>
+            <input type="number" id="i93" min="0" max="5" placeholder="0–5">
+        </div>
+
+    </div>
+
+    <button onclick="sendToGoogleForm()">Відправити</button>
+
+    <div class="footer-note">
+        розроблено Коханчук Денис і Реп'яшник Владислав
+    </div>
+
+</section>
+<script src="script.js" defer></script>
+<script src="script_send.js" defer></script>
+
+</body>
+</html>
