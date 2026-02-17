@@ -1,0 +1,154 @@
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(160deg, #bcd8ee, #6fa9d6);
+    color: #000;
+}
+
+
+.login-screen, .criteria-screen {
+    min-height: 100vh;
+    padding: 20px 16px 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin: 25px 0 15px;
+}
+
+
+.login-form, .criteria-list {
+    background: #dde8ef;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+}
+
+
+label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 3px solid #2c8ecb;
+    border-radius: 6px;
+    background: white;
+    box-sizing: border-box;
+    outline: none;
+}
+
+
+
+.criterion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+    padding: 10px 14px;
+    background: #d0e4f2; 
+    border-radius: 14px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+}
+
+.criterion span {
+    flex: 1;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #1a1a1a;
+}
+
+.score-input {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    text-align: center;
+    border: 2px solid #2c8ecb;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    background: white;
+    flex-shrink: 0;
+}
+
+
+button {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 30px;
+    background: #2c8ecb;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #1f72a6;
+}
+
+
+.criteria-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+
+
+/* Підпис розробників */
+.footer-note {
+    text-align: center;
+    font-size: 12px;
+    opacity: 0.45;
+    margin-top: 25px;
+}
+
+
+/* Відступи для мобільного простору */
+.bottom-space {
+    height: 10px;
+}
+
+/* Модальні вікна (popup) */
+.modal {
+    background: rgba(0,0,0,0.45);
+    position: fixed;
+    inset: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-box {
+    background: #dde8ef;
+    width: 88%;
+    padding: 20px;
+    border-radius: 22px;
+}
+
+.modal-title {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
