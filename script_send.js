@@ -68,7 +68,7 @@ function sendToGoogleForm() {
         .join("&");
 
     // URL вашої Google форми
-    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdjTbjQGwof2d5s77lf22VQQU9ydYWfPhjh-pZmr-2bNXsTUg/viewform";
+    const formURL = "https://docs.google.com/forms/d/e/1FAIpQLSdjTbjQGwof2d5s77lf22VQQU9ydYWfPhjh-pZmr-2bNXsTUg/formResponse";
 
     // Надсилаємо POST-запит
     fetch(formURL, {
